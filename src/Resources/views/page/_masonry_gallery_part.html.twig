@@ -1,0 +1,8 @@
+{#
+    @param  \PiedWeb\CMSBundle\Entity\MediaInterface image
+#}
+
+{% set img = image.relativeDir ~ '/' ~ image.media %}
+<a href="{{ img|imagine_filter('default') }}" class=tile>
+   <span data-img="{{ img|imagine_filter('height_300') }}" loading="lazy">{{ image.name }}</span>
+</a>

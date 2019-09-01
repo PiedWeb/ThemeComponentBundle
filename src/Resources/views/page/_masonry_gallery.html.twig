@@ -1,0 +1,15 @@
+{% extends '@PiedWebCMS/component/_section.html.twig' %}
+
+{% if page.images is defined and page.images is not empty %}
+    {% set id = 'gallery' %}
+    {% set container = true %}
+        {% block body %}
+            <div class="masonry mimg">
+                {% for image in page.images %}
+                    {% include '@PiedWebCMS/page/_mansory_gallery_part.html.twig' with {'image': image} only %}
+                {% endfor %}
+            </div>
+        {% endblock %}
+{% else %}
+    {% set exist = false %}
+{% endif %}

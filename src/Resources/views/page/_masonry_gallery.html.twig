@@ -1,11 +1,12 @@
-{% extends '@PiedWebCMS/component/_section.html.twig' %}
-
 {% if page.images is defined and page.images is not empty %}
+
+    {% set images = page.images.slice(galleryFilterFrom|default('0'), galleryFilterTo|default('1000')) %}
+
     {% set id = 'gallery' %}
     {% set container = true %}
         {% block body %}
             <div class="masonry mimg">
-                {% for image in page.images %}
+                {% for image in images %}
                     {% if loop.index <= 3 or gallery_not_lazy is defined %}
                         {% include '@PiedWebCMS/page/_masonry_gallery_part.html.twig' with {'image': image} only %}
                     {% else %}
@@ -14,6 +15,4 @@
                 {% endfor %}
             </div>
         {% endblock %}
-{% else %}
-    {% set exist = false %}
 {% endif %}

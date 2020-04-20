@@ -7,8 +7,17 @@
 {% block header %}
     {% if page.mainImage is defined and page.mainImage is not null %}
         <div class="card-header card-header-img">
-            <span class="card-img-top img-fluid rounded" data-img="{{ (page.mainImage.relativeDir ~ '/' ~ page.mainImage.media) |imagine_filter('thumb') }}">{{ page.title|striptags }}</span>
-            <div class="shadow-color" data-bg="{{ (page.mainImage.relativeDir ~ '/' ~ page.mainImage.media) |imagine_filter('thumb') }}"></div>
+            {% set image = page.mainImage %}
+            <picture>
+                <source srcset="{{ image.fullPathWebP|imagine_filter('thumb') }}" />
+                <img
+                    class="card-img-top img-fluid rounded"
+                    loading=lazy
+                    alt="{{ page.title|striptags }}"
+                    src="{{ image.fullPath|imagine_filter('thumb') }}"
+                    width="10000" height="10000" />
+            </picture>
+            <div class="shadow-color" data-bg="{{ image.fullPath|imagine_filter('thumb') }}" data-bg-webp="{{ image.fullPathWebP|imagine_filter('thumb') }}"></div>
         </div>
     {% endif %}
 {% endblock %}

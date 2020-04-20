@@ -17,6 +17,7 @@
             ~' srcset="'
                 ~ image.fullPath|imagine_filter('xs') ~' 576w'
             ~'"'
+            ~' width="10000" height="10000"'
             ~' src="'~ image.fullPath|imagine_filter('default') ~'" loading="lazy" alt="' ~ image.name ~'" />'
     ~'</picture>',
     image.fullPath|imagine_filter('default'),

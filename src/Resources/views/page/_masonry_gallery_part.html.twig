@@ -1,8 +1,25 @@
 {#
     @param  \PiedWeb\CMSBundle\Entity\MediaInterface image
+    //~' sizes="100vw">,
+    image.fullPath|imagine_filter('default'),
+    ~' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 49vw, 33vw"'
 #}
 
-{% set img = image.relativeDir ~ '/' ~ image.media %}
-<a href="{{ img|imagine_filter('default') }}" class=tile>
-   <img src="{{ img|imagine_filter('xs') }}" loading="lazy" alt="{{ image.name }}">
-</a>
+
+{{ link(''
+    ~'<picture>'
+        ~'<source'
+            ~' srcset="'
+                ~ image.fullPathWebP|imagine_filter('xs') ~' 576w'
+            ~'"'
+            ~' />'
+        ~'<img'
+            ~' srcset="'
+                ~ image.fullPath|imagine_filter('xs') ~' 576w'
+            ~'"'
+            ~' src="'~ image.fullPath|imagine_filter('default') ~'" loading="lazy" alt="' ~ image.name ~'" />'
+    ~'</picture>',
+    image.fullPath|imagine_filter('default'),
+    { 'class': 'tile', 'dwl': image.fullPathWebP|imagine_filter('default') }) }}
+
+

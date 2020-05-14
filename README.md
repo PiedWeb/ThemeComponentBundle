@@ -21,5 +21,5 @@ twig:
     paths:
         ...
         "%kernel.root_dir%/../vendor/piedweb/theme-component-bundle/src/Resources/views": PiedWebCMS
-        "%kernel.projet_dir%/../vendor/piedweb/theme-component-bundle/src/Resources/views": PiedWebThemeComponent
+        "%kernel.projet_dir%/vendor/piedweb/theme-component-bundle/src/Resources/views": PiedWebThemeComponent
 ```

@@ -4,7 +4,7 @@
 
 # PiedWeb Theme Component
 
-Made For [PiedWeb CMS](https://github.com/PiedWeb/CMS) and [Devoluix Theme](https://github.com/PiedWeb/piedweb-devoluix-theme)
+Made for [PiedWeb CMS](https://github.com/PiedWeb/CMS) and Bootstrap / [Devoluix Theme](https://github.com/PiedWeb/piedweb-devoluix-theme)
 
 
 ## Installation
@@ -21,4 +21,5 @@ twig:
     paths:
         ...
         "%kernel.root_dir%/../vendor/piedweb/theme-component-bundle/src/Resources/views": PiedWebCMS
+        "%kernel.projet_dir%/../vendor/piedweb/theme-component-bundle/src/Resources/views": PiedWebThemeComponent
 ```

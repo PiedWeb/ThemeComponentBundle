@@ -17,6 +17,6 @@
         {{ _self.breadcrumbPart(page.parentPage) }}
     {% endif %}
     <li class="breadcrumb-item">
-        <a href="{{ (page.slug == 'homepage' ? homepage() : page(page.slug)) }}">{{ (page.name is not null ? page.name : page.title) }}</a>
+        <a href="{{ (page.slug == 'homepage' ? homepage() : page(page.slug)) }}" class="text-decoration-none">{{ (page.name is not null ? page.name : page.title) }}</a>
     </li>
 {% endmacro %}

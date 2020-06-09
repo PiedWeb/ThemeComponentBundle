@@ -5,7 +5,7 @@
     {% set id = 'gallery' %}
     {% set container = true %}
         {% block body %}
-            <div class="masonry mimg">
+            <div class="un-masonry masonry mimg">
                 {% for image in images %}
                     {% include '@PiedWebCMS/page/_masonry_gallery_part.html.twig' with {'image': image} only %}
                 {% endfor %}

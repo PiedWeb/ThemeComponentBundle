@@ -1,45 +1,56 @@
-{# component for piedweb-devoluix-theme #}
+{# component for @piedweb/bs5-extended // small cards #}
+{% block lists %}
 {% if pages is not empty %}
-    <ul class="row list-unstyled">
+    <ul class="justify-content-center list-unstyled row">
     {% for page in pages %}
+        {% block item %}
         {% if (page.createdAt) <= date('now') %}
-        <li class="col-xl-3 col-lg-4 col-md-6">
-            <div class="mcard clickable">
+        <li class="col-sm-6 col-xl-4 mt-5">
+            <div class="position-relative p-3 shadow border-0 rounded bg-white">
 
                 {% block header %}
                 {% if page.mainImage is defined and page.mainImage is not null %}
-                <div class="card-header card-header-img p-0">
+                <div class="p-0 mt-n5 mb-4 shadow position-relative w-100">
                     {% set image = page.mainImage %}
                      <picture>
                         <source srcset="{{ image.fullPathWebP|imagine_filter('thumb') }}" />
                         <img
-                            class="card-img-top img-fluid rounded"
+                            class="img-fluid rounded z-1 w-100"
                             loading=lazy
                             alt="{{ page.title|striptags }}"
-                            src="{{ image.fullPath|imagine_filter('thumb') }}"
-                            width="10000" height="10000">
+                            srcset="{{ image.fullPath|imagine_filter('thumb') }}"
+                            src="{{ image.fullPath|imagine_filter('default') }}"
+                            width="1000" height="1000" />
                      </picture>
-                     <div class="shadow-color" data-bg="{{ image.fullPath|imagine_filter('thumb') }}" data-bg-webp="{{ image.fullPathWebP|imagine_filter('thumb') }}"></div>
+
+                    <picture>
+                        <source srcset="{{ image.fullPathWebP|imagine_filter('thumb') }}" />
+                        <img
+                            srcset="{{ image.fullPath|imagine_filter('thumb') }}"
+                            src="{{ image.fullPath|imagine_filter('default') }}"
+                            alt="{{ page.title|striptags }}"
+                            class="img-fluid shadow-color mt-2 rounded"
+                            height="1000" width="1000" loading="lazy" />
+                    </picture>
                 </div>
                 {% endif %}
                 {% endblock %}
 
                 {% block body %}
-                <div class="card-body">
+
                      {% if page.excreptProduct is defined and page.excreptProduct is not null %}
-                        <div class="card-text text-muted"><small>{{ page.excreptProduct }}</small></div>
+                        <div class="text-primary d-block"><small>{{ page.excreptProduct }}</small></div>
                     {% endif %}
-                    <h3 class="pt-1 h5 card-title">
-                        <a href="{{ page(page.realSlug) }}">
-                            {{ (page.h1 is defined and page.h1 is not null ? page.h1 : page.title)|raw }}
-                        </a>
-                    </h3>
-                </div>
+                    <a href="{{ page.title_href|default(page(page.realSlug ?? '')) }}" class="stretched-link text-decoration-none h5 d-block">
+                        {{ page.h1|default(page.title)|raw }}
+                    </a>
                 {% endblock %}
 
             </div>
         </li>
         {% endif %}
+        {% endblock %}
     {% endfor %}
     </ul>
 {% endif %}
+{% endblock %}

@@ -11,7 +11,7 @@
 {% macro galleryPart(image, page = null, lazy = false) %}
     {{ link(''
     ~'<picture>'
-        ~'<source'
+        ~'<source type="image/webp"'
             ~' srcset="'
                 ~ image.fullPathWebP|imagine_filter('height_300') ~' 576w'
             ~'"'
@@ -20,7 +20,7 @@
             ~' srcset="'
                 ~ image.fullPath|imagine_filter('height_300') ~' 576w'
             ~'"'
-~' src="'~ image.fullPath|imagine_filter('default') ~'" loading="lazy"'
+            ~' src="'~ image.fullPath|imagine_filter('default') ~'" loading="lazy"'
 
             ~' width="10000" height="10000"'
             ~' alt="' ~ image.name(page is defined ? page.locale : null) ~'">'

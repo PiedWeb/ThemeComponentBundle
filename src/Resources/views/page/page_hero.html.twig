@@ -15,11 +15,11 @@ OtherProperties:
 
     {% block content_title %}
     <div
-        class="{{ page.hero_wrapper ?? hero_wrapper|default('col-12 order-3 hero-banner hero-banner-overlay-lg mt-nnav') }}"
+        class="{{ page.hero_wrapper ?? hero_wrapper|default('col-12 order-3 hero-banner hero-banner-overlay-lg') }}"
         style="background:{{ page.mainImage.mainColor }}"
     >
         <div class="{{ page.hero_container|default(hero_container ?? 'container container-txt') }}">
-            <div class="{{ page.hero_position|default(hero_position ?? 'stick-bottom mt-nav pt-5 pb-lg-3 pb-5')}}{{ main_image_blur is defined ? ' blur': ''}}">
+            <div class="{{ page.hero_position|default(hero_position ?? 'stick-bottom pt-5 pb-lg-3 pb-5')}}{{ main_image_blur is defined ? ' blur': ''}}">
 
                 {% block subTitle %}
                     {% if page.subtitle is not null %}

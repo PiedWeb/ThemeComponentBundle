@@ -40,6 +40,21 @@ OtherProperties:
         </div>
 
         {% block main_image %}
+            {% if page.main_image_multiple is not null %}
+                {% for bg in page.main_image_multiple|split(';') %}
+                    {% set bg = bg|split(':') %}
+                    {%
+                        include '@PiedWebCMS/component/_inline_image.html.twig' with {
+                            'image_src': bg.1,
+                            'image_alt': bg.0~' '~page.mainImage.name(page.locale, true)|default(page.title)|striptags,
+                            'image_attr': {
+                                style: 'display:none',
+                                'x-hash': bg.0
+                            }
+                        }
+                    %}
+                {% endfor %}
+            {% endif %}
             {% if page.mainImage is not null %}
                 {%
                     include '@PiedWebCMS/component/_inline_image.html.twig' with {

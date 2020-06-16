@@ -77,11 +77,24 @@ OtherProperties:
 
     <div {{ mergeAttr(
             {'class': 'col-12 order-4'},
-            {'class': page.container|default(container ?? 'container container-txt py-5')}
+            {'class': page.container|default(container ?? ('container'~(page.toc is null ? '-txt':' mw-lg exl-sidebar-right exl-sidebar-right-small')~' py-5')) }
         ) }} id="content">
 
         {% block main_content %}
-            {{ extract('mainContent', page) }}
+            {% if page.toc %}
+                <div class="exl-intro pt-md-3 pl-lg-4">{{ extract('intro', page) }}</div>
+
+
+                <div class="exl-sidebar exl-sidebar-sticky pl-xl-3 pt-lg-5 text-muted mb-lg-5">
+                    <span class="d-block h6 my-2 pb-2 border-bottom">{% trans %}Sommaire{% endtrans %}</span>
+                    {{ extract('toc', page) }}
+                </div>
+
+
+                <div class="exl-content order-1 pl-lg-4">{{ extract('content', page) }}</div>
+            {% else %}
+                {{ parent() }}
+            {% endif %}
         {% endblock %}
 
     </div>

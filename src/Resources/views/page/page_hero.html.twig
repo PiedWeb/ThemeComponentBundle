@@ -11,12 +11,14 @@ OtherProperties:
 #}
 
 {% block content %}
+
     {% if page.mainImage is not null %}
 
     {% block content_title %}
     <div
         class="{{ page.hero_wrapper ?? hero_wrapper|default('col-12 order-3 hero-banner hero-banner-overlay-lg') }}"
         style="background:{{ page.mainImage.mainColor }}"
+        {% if page.video is not null %}replaceBy="{{ getEmbedCode(page.video.embed_code|default(page.video))|replace({'"': "'"}) }}"{% endif %}
     >
         <div class="{{ page.hero_container|default(hero_container ?? 'container container-txt') }}">
             <div class="{{ page.hero_position|default(hero_position ?? 'stick-bottom pt-5 pb-lg-3 pb-5')}}{{ main_image_blur is defined ? ' blur': ''}}">
@@ -32,9 +34,7 @@ OtherProperties:
                 {% endblock %}
 
                 {% block description %}
-                    {% if page.chapeau is not null %}
-                        {% include(template_from_string(page.chapeau)) %}
-                    {% endif %}
+                    {{ extract('chapeau', page) }}
                 {% endblock %}
             </div>
         </div>
@@ -66,6 +66,11 @@ OtherProperties:
                 %}
 
             {% endif %}
+            {% if page.video is not null %}
+            <button class=" {{ page.video.btn_style is defined and page.video.btn_style == 'circle' ? 'btn btn-outline-primary rounded-pill btn-play' : page.video.btn_style|default('btn btn-danger rounded btn-play shadow') }}">
+                {{page.video.btn_title|default('Lire la vidéo') }}
+            </button>
+            {% endif %}
         {% endblock %}
     </div>
     {% endblock %}
@@ -76,9 +81,7 @@ OtherProperties:
         ) }} id="content">
 
         {% block main_content %}
-            {% apply punctuation_beautifer %}
-                {{ include(template_from_string(page.readableContent)) }}
-            {% endapply %}
+            {{ extract('mainContent', page) }}
         {% endblock %}
 
     </div>
@@ -86,5 +89,6 @@ OtherProperties:
     {% else %}
         {{ parent() }}
     {% endif %}
+
 
 {% endblock %}

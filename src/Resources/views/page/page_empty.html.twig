@@ -2,7 +2,5 @@
 
 
 {% block body %}
-    {% apply punctuation_beautifer %}
-        {{ include(template_from_string(page.readableContent)) }}
-    {% endapply %}
+    {{ extract('mainContent', page) }}
 {% endblock %}

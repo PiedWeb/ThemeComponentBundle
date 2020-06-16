@@ -81,7 +81,7 @@ OtherProperties:
         ) }} id="content">
 
         {% block main_content %}
-            {% if page.toc %}
+            {% if page.toc is not null %}
                 <div class="exl-intro pt-md-3 pl-lg-4">{{ extract('intro', page) }}</div>
 
 
@@ -92,6 +92,8 @@ OtherProperties:
 
 
                 <div class="exl-content order-1 pl-lg-4">{{ extract('content', page) }}</div>
+
+                <div class="exl-postcontent">{{ extract('postcontent', page) }}</div>
             {% else %}
                 {{ parent() }}
             {% endif %}

@@ -25,7 +25,7 @@ OtherProperties:
 
                 {% block subTitle %}
                     {% if page.subtitle is not null %}
-                        <div class="text-uppercase first-letter-lg mb-2">{{ page.subtitle|raw  }}</div>
+                        <div class="{{ page.hero_subtitle_class|default(hero_subtitle_class ?? 'text-uppercase first-letter-lg mb-2' }}">{{ page.subtitle|raw  }}</div>
                     {% endif %}
                 {% endblock %}
 

@@ -60,7 +60,7 @@ OtherProperties:
                 {%
                     include '@PiedWebCMS/component/_inline_image.html.twig' with {
                         'image_src': page.mainImage.fullPath|imagine_filter('default'),
-                            'image_link': false,
+                        'image_link': false,
                         'image_alt': page.mainImage.name(page.locale, true)|default(page.title)|striptags,
                     }
                 %}

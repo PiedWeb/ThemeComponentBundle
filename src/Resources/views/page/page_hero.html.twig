@@ -20,7 +20,7 @@ OtherProperties:
         style="background:{{ page.mainImage.mainColor }}"
         {% if page.video is not null %}replaceBy="{{ getEmbedCode(page.video.embed_code|default(page.video))|replace({'"': "'"}) }}"{% endif %}
     >
-        <div class="{{ page.hero_container|default(hero_container ?? 'container container-txt') }}">
+        <div class="{{ page.hero_container|default(hero_container ?? 'container'~(page.toc is null ? ' container-txt':' mw-lg')) }}">
             <div class="{{ page.hero_position|default(hero_position ?? 'stick-bottom pt-5 pb-lg-3 pb-5')}}{{ main_image_blur is defined ? ' blur': ''}}">
 
                 {% block subTitle %}
@@ -79,7 +79,7 @@ OtherProperties:
 
     <div {{ mergeAttr(
             {'class': 'col-12 order-4'},
-            {'class': page.container|default(container ?? ('container'~(page.toc is null ? '-txt':' mw-lg')~' py-5')) }
+            {'class': page.container|default(container ?? ('container'~(page.toc is null ? ' container-txt':' mw-lg')~' py-5')) }
         ) }} id="content">
 
         {% block main_content %}

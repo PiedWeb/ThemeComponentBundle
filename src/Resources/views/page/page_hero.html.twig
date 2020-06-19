@@ -25,7 +25,9 @@ OtherProperties:
 
                 {% block subTitle %}
                     {% if page.subtitle is not null %}
-                        <div class="{{ page.hero_subtitle_class|default(hero_subtitle_class ?? 'text-uppercase first-letter-lg mb-2' }}">{{ page.subtitle|raw  }}</div>
+                        <div class="{{ page.hero_subtitle_class|default(hero_subtitle_class ?? 'text-uppercase first-letter-lg mb-2') }}">
+                            {{ page.subtitle|raw  }}
+                        </div>
                     {% endif %}
                 {% endblock %}
 
@@ -95,7 +97,7 @@ OtherProperties:
                 <div class="exl-content order-1 pl-lg-4">{{ extract('content', page) }}</div>
             </div>
 
-                <div class="2exl-postcontent">{{ extract('postcontent', page) }}</div>
+            <div>{{ extract('postcontent', page) }}</div>
             {% else %}
                 {{ parent() }}
             {% endif %}

@@ -6,7 +6,7 @@
                 {% block label %}{% endblock %}
                 <ol class="breadcrumb">
                     {{ _self.breadcrumbPart(page.parentPage) }}
-                    <li class="breadcrumb-item active" aria-current="page">{{ (page.name is not null ? page.name : page.title) }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page.getName(true) }}</li>
                 </ol>
             </nav>
         {% endif %}
@@ -17,6 +17,6 @@
         {{ _self.breadcrumbPart(page.parentPage) }}
     {% endif %}
     <li class="breadcrumb-item">
-        <a href="{{ (page.slug == 'homepage' ? homepage() : page(page.slug)) }}" class="text-decoration-none">{{ (page.name is not null ? page.name : page.title) }}</a>
+        <a href="{{ (page.slug == 'homepage' ? homepage() : page(page.slug)) }}" class="text-decoration-none">{{ page.getName(true) }}</a>
     </li>
 {% endmacro %}

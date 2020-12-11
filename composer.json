@@ -1,5 +1,5 @@
 {
-  "name": "piedweb/bootstrap-theme-component",
+  "name": "piedweb/theme-component-bundle",
   "type": "symfony-bundle",
   "description": "Component related to bootstrap 5 extended theme for PiedWebCMS",
   "keywords": [],
@@ -16,5 +16,10 @@
       "email": "contact@robin-d.fr",
       "homepage": "https://www.robin-d.fr/"
     }
-  ]
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.x-dev"
+    }
+  }
 }

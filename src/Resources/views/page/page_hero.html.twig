@@ -32,7 +32,7 @@ OtherProperties:
                 {% endblock %}
 
                 {% block h1 %}
-                    <h1 class="{{ page.h1_class|default(h1_class ?? 'font-weight-bold mb-2') }}">{{ page.h1|default(page.title)|raw }}</h1>
+                    <h1 class="{{ page.h1_class|default(h1_class ?? 'font-weight-bold mb-2') }}">{{ page.getH1(true)|raw }}</h1>
                 {% endblock %}
 
                 {% block description %}
@@ -48,7 +48,7 @@ OtherProperties:
                     {%
                         include '@PiedWebCMS/component/_inline_image.html.twig' with {
                             'image_src': bg.1,
-                            'image_alt': bg.0~' '~page.mainImage.name(page.locale, true)|default(page.title)|striptags,
+                            'image_alt': bg.0~' '~page.mainImage.name(page.locale, true)|default(page.getTitle(true))|striptags,
                             'image_link': false,
                             'image_attr': {
                                 style: 'display:none',
@@ -63,7 +63,7 @@ OtherProperties:
                     include '@PiedWebCMS/component/_inline_image.html.twig' with {
                         'image_src': page.mainImage.fullPath|imagine_filter('default'),
                         'image_link': false,
-                        'image_alt': page.mainImage.name(page.locale, true)|default(page.title)|striptags,
+                        'image_alt': page.mainImage.name(page.locale, true)|default(page.getTitle(true))|striptags,
                     }
                 %}
 

@@ -4,7 +4,7 @@
             {% if (page.createdAt) <= date('now') %}
                 <li>
                     <a href="{{ page(page.realSlug) }}">
-                        {{ (page.h1 is defined and page.h1 is not null ? page.h1 : page.title)|raw }}
+                        {{ page.getH1(true)|raw }}
                     </a>
                 </li>
             {% endif %}
